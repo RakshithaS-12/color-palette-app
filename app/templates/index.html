@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Color Palette Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎨 AI Color Palette Generator</h1>
+
+    <form method="POST" class="buttons">
+        <button name="mood" value="happy">Happy</button>
+        <button name="mood" value="calm">Calm</button>
+        <button name="mood" value="dark">Dark</button>
+        <button name="mood" value="romantic">Romantic</button>
+        <button name="mood" value="pastel">Pastel</button>
+        <button name="mood" value="neon">Neon</button>
+        <button name="mood" value="sunset">Sunset</button>
+        <button name="mood" value="ocean">Ocean</button>
+        <button name="mood" value="forest">Forest</button>
+        <button name="mood" value="minimal">Minimal</button>
+        <button name="mood" value="random">🎲 Random</button>
+    </form>
+
+    <h3>{{ mood.capitalize() }} Palette</h3>
+
+    <div class="grid">
+        {% for palette in palettes %}
+            <div class="card">
+                {% for color in palette %}
+                    <div class="color" 
+                         style="background-color: {{ color }}" 
+                         onclick="copyColor('{{ color }}')">
+                        {{ color }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+<script>
+function copyColor(color) {
+    navigator.clipboard.writeText(color);
+
+    const msg = document.createElement("div");
+    msg.innerText = color + " copied!";
+    msg.className = "copy-msg";
+
+    document.body.appendChild(msg);
+
+    setTimeout(() => {
+        msg.remove();
+    }, 1500);
+}
+</script>
+
+</body>
+</html>
