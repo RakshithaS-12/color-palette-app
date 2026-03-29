@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/RakshithaS-12/color-palette-app'
+                git branch: 'main', url: 'https://github.com/RakshithaS-12/color-palette-app'
             }
         }
 
