@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repo') {
-            steps {
-                git branch: 'main', url: 'https://github.com/RakshithaS-12/color-palette-app'
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t color-app .'
